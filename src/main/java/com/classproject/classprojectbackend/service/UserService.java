@@ -1,8 +1,6 @@
 package com.classproject.classprojectbackend.service;
 
 import com.classproject.classprojectbackend.Repositories.UserRepository;
-import com.classproject.classprojectbackend.Repositories.UserTypeRepository;
-import com.classproject.classprojectbackend.entity.Customer;
 import com.classproject.classprojectbackend.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
