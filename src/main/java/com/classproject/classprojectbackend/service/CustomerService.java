@@ -14,6 +14,6 @@ public class CustomerService {
         return  customerRepository.save(customer);
     }
 
-
+     private String Name;
 
 }
