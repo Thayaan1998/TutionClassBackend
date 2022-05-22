@@ -17,6 +17,12 @@ public class UserService {
     }
 
     public Users getUserByEmail(String email){
+
         return userRepository.getUserByEmail(email);
+    };
+
+    public Users getUserByEmailAndPassword(String email,String password){
+
+        return userRepository.getUserByEmailPAndPassword(email,password);
     };
 }
