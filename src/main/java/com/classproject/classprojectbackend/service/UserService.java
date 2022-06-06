@@ -25,4 +25,9 @@ public class UserService {
 
         return userRepository.getUserByEmailPAndPassword(email,password);
     };
+
+    public Users getUserById(int id){
+
+        return userRepository.getUserById(id);
+    };
 }

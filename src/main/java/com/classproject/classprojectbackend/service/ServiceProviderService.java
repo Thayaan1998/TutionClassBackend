@@ -5,6 +5,7 @@ import com.classproject.classprojectbackend.Repositories.ServiceProviderWithProm
 import com.classproject.classprojectbackend.entity.ServiceProvider;
 import com.classproject.classprojectbackend.entity.ServiceProviderWithPromo;
 import com.classproject.classprojectbackend.entity.UserType;
+import com.classproject.classprojectbackend.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,13 @@ public class ServiceProviderService {
     @Autowired(required = true)
     public ServiceProviderRepository serviceProviderRepo;
 
-
-
     public ArrayList<ServiceProvider>  getServiceProvider() {
 
        return  (ArrayList< ServiceProvider> )serviceProviderRepo.findAll();
     }
+
+    public ServiceProvider getServiceProviderByUserId(int id){
+
+        return serviceProviderRepo.getServiceProviderByUserId(id);
+    };
 }
