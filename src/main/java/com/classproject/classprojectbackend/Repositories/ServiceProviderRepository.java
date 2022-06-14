@@ -18,6 +18,9 @@ public interface ServiceProviderRepository extends CrudRepository<ServiceProvide
     @Query(value = "SELECT * FROM serviceprovider where serviceProviderId = ?1 ", nativeQuery = true)
     public ServiceProvider getServiceProviderByUserId(int serviceProviderId);
 
+    @Query(value = "SELECT * FROM serviceprovider where userId = ?1 ", nativeQuery = true)
+    public ServiceProvider getServiceProviderByUser(int userId);
+
     @Query(value = "SELECT * FROM serviceprovider where category LIKE %?1% ", nativeQuery = true)
     public ArrayList<ServiceProvider> getServiceProviderByCategory(String category);
 

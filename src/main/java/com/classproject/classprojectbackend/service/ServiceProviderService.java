@@ -57,4 +57,9 @@ public class ServiceProviderService {
 
         return  serviceProviderRepo.getServiceProviderCount();
     }
+
+    public ServiceProvider getServiceProviderByUser(int Id) {
+
+        return  serviceProviderRepo.getServiceProviderByUser(Id);
+    }
 }

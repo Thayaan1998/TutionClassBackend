@@ -11,4 +11,7 @@ public interface ServiceConsumerRepository  extends CrudRepository<ServiceConsum
 
     @Query(value = "SELECT COUNT(*) FROM serviceconsumer", nativeQuery = true)
     public int getConsumerCount();
+
+    @Query(value = "SELECT * FROM serviceconsumer where userId = ?1 ", nativeQuery = true)
+    public ServiceConsumer getServiceConsumerByUser(int userId);
 }

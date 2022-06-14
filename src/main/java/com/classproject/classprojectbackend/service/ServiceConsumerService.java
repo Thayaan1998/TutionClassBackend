@@ -37,4 +37,9 @@ public class ServiceConsumerService {
 
         return  serviceConsumerRepo.getConsumerCount();
     }
+
+    public ServiceConsumer getServiceConsumerByUser(int Id) {
+
+        return  serviceConsumerRepo.getServiceConsumerByUser(Id);
+    }
 }

@@ -42,4 +42,9 @@ public class AgentService {
 
         return  agentRepository.getAgentById(Id);
     }
+
+    public Agent getAgentByUser(int Id) {
+
+        return  agentRepository.getServiceAgentByUser(Id);
+    }
 }

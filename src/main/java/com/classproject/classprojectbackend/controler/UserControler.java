@@ -280,26 +280,51 @@ public class UserControler {
 
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Users users) {
+    @PostMapping("/login1")
+    public Users login1(@RequestBody Users users) {
         Users users1;
         try {
-            users1 = userService.getUserByEmailAndPassword(users.getEmail(), users.getPassword());
+            users1 = userService.getUserByEmail(users.getEmail());
 
             if (users1 == null) {
-                return new ResponseEntity<String>("Not valid username or password", HttpStatus.OK);
+                return null;
             } else {
+//                Random rnd = new Random();
+//                int number = rnd.nextInt(9999);
+//                SimpleMailMessage message = new SimpleMailMessage();
+//                message.setFrom("springtest981420@gmail.com");
+//                message.setTo("selvathayaan3@gmail.com");
+//                message.setSubject("OTP Number");
+//                message.setText(String.format("%04d", number));
+//                emailSender.send(message);
+
+//                return new ResponseEntity<String>(String.format("%04d", number), HttpStatus.OK);
+                return users1;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+    }
+
+    @PostMapping("/login2")
+    public ResponseEntity<String> login2(@RequestBody Users users) {
+        Users users1;
+        try {
+               users1 = userService.getUserByEmail(users.getEmail());
                 Random rnd = new Random();
                 int number = rnd.nextInt(9999);
                 SimpleMailMessage message = new SimpleMailMessage();
                 message.setFrom("springtest981420@gmail.com");
-                message.setTo("selvathayaan3@gmail.com");
+                message.setTo(users.getEmail());
                 message.setSubject("OTP Number");
                 message.setText(String.format("%04d", number));
                 emailSender.send(message);
 
                 return new ResponseEntity<String>(String.format("%04d", number), HttpStatus.OK);
-            }
+
 
         } catch (Exception ex) {
             System.out.println(ex);
@@ -437,6 +462,46 @@ public class UserControler {
             return new ResponseEntity<String>(uploadDir + fileName, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
+    @GetMapping("/getServiceProviderByUser/{userId}")
+    public ServiceProvider  getServiceProviderByUser(@PathVariable("userId")int userId) {
+        ServiceProvider serviceProvider = null;
+        try {
+            serviceProvider = serviceProviderService.getServiceProviderByUser(userId);
+            return serviceProvider;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+    }
+
+    @GetMapping("/getAgentByUser/{userId}")
+    public Agent  getAgentByUser(@PathVariable("userId")int userId) {
+        Agent agent = null;
+        try {
+            agent = agentService.getAgentByUser(userId);
+            return agent;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+    }
+
+    @GetMapping("/gerServiceConsumer/{userId}")
+    public ServiceConsumer  getServiceConsumerByUser(@PathVariable("userId")int userId) {
+        ServiceConsumer serviceConsumer = null;
+        try {
+            serviceConsumer = serviceConsumerService.getServiceConsumerByUser(userId);
+            return serviceConsumer;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
         }
 
     }

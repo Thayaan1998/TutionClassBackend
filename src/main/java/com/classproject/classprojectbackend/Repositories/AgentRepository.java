@@ -1,6 +1,7 @@
 package com.classproject.classprojectbackend.Repositories;
 
 import com.classproject.classprojectbackend.entity.Agent;
+import com.classproject.classprojectbackend.entity.ServiceConsumer;
 import com.classproject.classprojectbackend.entity.ServiceProvider;
 import com.classproject.classprojectbackend.entity.UserType;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,4 +29,7 @@ public interface AgentRepository extends CrudRepository<Agent,Integer> {
 
     @Query(value = "SELECT * FROM agent where agentId = ?1 ", nativeQuery = true)
     public  Agent getAgentById(int agentId);
+
+    @Query(value = "SELECT * FROM Agent where userId = ?1 ", nativeQuery = true)
+    public Agent getServiceAgentByUser(int userId);
 }
