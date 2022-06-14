@@ -37,9 +37,8 @@ public class ServicePromoControler {
         try {
 
             ServiceProvider serviceProvider = serviceProviderService1.getServiceProviderByUserId(serviceProviderWithPromo.getServiceproviderId());
-
-
-            Users users=userService.getUserById(serviceProvider.getUserId());
+            System.out.println(serviceProvider);
+            Users users=userService.getUserById(serviceProvider.getUsers().getUserId());
 
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("springtest981420@gmail.com");
@@ -55,6 +54,7 @@ public class ServicePromoControler {
 
 
         } catch (Exception ex) {
+            System.out.println(ex);
             return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
 

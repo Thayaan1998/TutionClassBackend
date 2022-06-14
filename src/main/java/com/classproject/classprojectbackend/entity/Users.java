@@ -35,7 +35,10 @@ public class Users {
     @Column(name="usertypeid")
     private int userTypeId;
 
-    public Users(int userId, String email, String userName, String address, String postcode, String contactNumber, String password, int userTypeId) {
+    @Column(name="image")
+    private String image;
+
+    public Users(int userId, String email, String userName, String address, String postcode, String contactNumber, String password, int userTypeId, String image) {
         this.userId = userId;
         this.email = email;
         this.userName = userName;
@@ -44,6 +47,7 @@ public class Users {
         this.contactNumber = contactNumber;
         this.password = password;
         this.userTypeId = userTypeId;
+        this.image = image;
     }
 
     public int getUserId() {
@@ -110,17 +114,11 @@ public class Users {
         this.userTypeId = userTypeId;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "userId=" + userId +
-                ", email='" + email + '\'' +
-                ", userName='" + userName + '\'' +
-                ", address='" + address + '\'' +
-                ", postcode='" + postcode + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", password='" + password + '\'' +
-                ", userTypeId=" + userTypeId +
-                '}';
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

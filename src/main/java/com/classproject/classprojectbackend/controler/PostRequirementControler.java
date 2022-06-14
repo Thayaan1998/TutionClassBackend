@@ -2,6 +2,7 @@ package com.classproject.classprojectbackend.controler;
 
 import com.classproject.classprojectbackend.entity.Customer;
 import com.classproject.classprojectbackend.entity.PostRequirement;
+import com.classproject.classprojectbackend.entity.Quotation;
 import com.classproject.classprojectbackend.entity.UserType;
 import com.classproject.classprojectbackend.service.CustomerService;
 import com.classproject.classprojectbackend.service.PostRequirmentService;
@@ -29,6 +30,7 @@ public class PostRequirementControler {
             return new ResponseEntity<String>("Post Requirement Details Added Successfully", HttpStatus.OK);
 
         } catch (Exception ex) {
+            System.out.println(ex);
             return new ResponseEntity<String>("Post Requirement Details Not Added", HttpStatus.BAD_REQUEST);
         }
 
@@ -46,9 +48,45 @@ public class PostRequirementControler {
 
 
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return null;
         }
 
     }
+
+    @PostMapping("/postQuatation")
+    public ResponseEntity<String> postQuatation(@RequestBody Quotation quotation) {
+
+        try {
+            postRequirmentService.postQuatation(quotation);
+
+            return new ResponseEntity<String>("Quatation Posted Sucessfully", HttpStatus.OK);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
+
+    @GetMapping("/getQuatation/{serviceConsumerId}")
+    public ResponseEntity<ArrayList<Quotation>> updatePackage(@PathVariable("serviceConsumerId") int serviceConsumerId
+    ) {
+
+        try {
+
+            ArrayList<Quotation> quotations = postRequirmentService.getQuatations(serviceConsumerId);
+
+            return new ResponseEntity<ArrayList<Quotation>>(quotations, HttpStatus.OK);
+
+
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        return null;
+    }
+
+
 }
 

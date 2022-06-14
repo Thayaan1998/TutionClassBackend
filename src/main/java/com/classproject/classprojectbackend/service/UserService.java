@@ -30,4 +30,9 @@ public class UserService {
 
         return userRepository.getUserById(id);
     };
+
+    public void updateUser(String userName,String address, String contactNumber,String image,int userId){
+
+         userRepository.UpdateUser(userName,address,contactNumber,image,userId);
+    };
 }

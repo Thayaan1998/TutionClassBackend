@@ -11,8 +11,10 @@ public class PostRequirement {
     @Column(name="requirementid")
     private  int requirementId;
 
-    @Column(name="location")
-    private String location;
+
+    @OneToOne
+    @JoinColumn(name="branchid", nullable=false)
+    private Branch branch;
 
     @Column(name="requirementdetails")
     private String requirementDetails;
@@ -26,17 +28,18 @@ public class PostRequirement {
     @Column(name="category")
     private String category;
 
-    @Column(name="serviceconsumerid")
-    private int serviceConsumerId;
+    @OneToOne
+    @JoinColumn(name="serviceconsumerid", nullable=false)
+    private ServiceConsumer serviceConsumer;
 
-    public PostRequirement(int requirementId, String location, String requirementDetails, String email, String phonenumber, String category, int serviceConsumerId) {
+    public PostRequirement(int requirementId, Branch branch, String requirementDetails, String email, String phonenumber, String category, ServiceConsumer serviceConsumer) {
         this.requirementId = requirementId;
-        this.location = location;
+        this.branch = branch;
         this.requirementDetails = requirementDetails;
         this.email = email;
         this.phonenumber = phonenumber;
         this.category = category;
-        this.serviceConsumerId = serviceConsumerId;
+        this.serviceConsumer = serviceConsumer;
     }
 
     public PostRequirement() {
@@ -50,12 +53,12 @@ public class PostRequirement {
         this.requirementId = requirementId;
     }
 
-    public String getLocation() {
-        return location;
+    public Branch getBranch() {
+        return branch;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     public String getRequirementDetails() {
@@ -90,24 +93,11 @@ public class PostRequirement {
         this.category = category;
     }
 
-    public int getServiceConsumerId() {
-        return serviceConsumerId;
+    public ServiceConsumer getServiceConsumer() {
+        return serviceConsumer;
     }
 
-    public void setServiceConsumerId(int serviceConsumerId) {
-        this.serviceConsumerId = serviceConsumerId;
-    }
-
-    @Override
-    public String toString() {
-        return "PostRequirement{" +
-                "requirementId=" + requirementId +
-                ", location='" + location + '\'' +
-                ", requirementDetails='" + requirementDetails + '\'' +
-                ", email='" + email + '\'' +
-                ", phonenumber='" + phonenumber + '\'' +
-                ", category='" + category + '\'' +
-                ", serviceConsumerId=" + serviceConsumerId +
-                '}';
+    public void setServiceConsumer(ServiceConsumer serviceConsumer) {
+        this.serviceConsumer = serviceConsumer;
     }
 }
