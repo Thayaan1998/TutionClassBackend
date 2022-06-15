@@ -29,7 +29,45 @@ public class SubscribeControler {
             return new ResponseEntity<String>("Subscribe details Added Successfully", HttpStatus.OK);
 
         }catch (Exception ex){
+            System.out.println(ex);
             return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/getSubscribe/{serviceProviderId}")
+    public ResponseEntity<Subscribe> getSubscribe(@PathVariable("serviceProviderId")int serviceProviderId){
+        Subscribe subscribe1;
+        try
+        {
+
+            System.out.println(serviceProviderId);
+            subscribe1=subscribeService.getSubscribe(serviceProviderId);
+            System.out.println(subscribe1);
+
+            return new ResponseEntity<Subscribe>(subscribe1, HttpStatus.OK);
+
+        }catch (Exception ex){
+            System.out.println(ex);
+            return null;
+        }
+    }
+
+    @PostMapping("/updateSubscribe")
+    public ResponseEntity<String> updateSubscribeDetails(
+
+            @RequestParam("status") String status,
+            @RequestParam("subscribeId") int subscribeId
+    ){
+        try
+        {
+            System.out.println("aalal");
+               subscribeService.UpdateSubscribeQuotation(status,subscribeId);
+
+            return new ResponseEntity<String>(status+" successfully", HttpStatus.OK);
+
+        }catch (Exception ex){
+            System.out.println(ex);
+            return null;
         }
     }
 }

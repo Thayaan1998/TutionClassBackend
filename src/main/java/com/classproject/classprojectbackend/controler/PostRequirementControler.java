@@ -6,6 +6,7 @@ import com.classproject.classprojectbackend.entity.Quotation;
 import com.classproject.classprojectbackend.entity.UserType;
 import com.classproject.classprojectbackend.service.CustomerService;
 import com.classproject.classprojectbackend.service.PostRequirmentService;
+import com.classproject.classprojectbackend.service.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class PostRequirementControler {
 
     @Autowired(required = true)
     private PostRequirmentService postRequirmentService;
+
+    @Autowired(required = true)
+    private SubscribeService subscribeService;
 
     @PostMapping("/addPostRequirement")
     public ResponseEntity<String> addCustomer(@RequestBody PostRequirement postRequirement) {
@@ -59,6 +63,23 @@ public class PostRequirementControler {
 
         try {
             postRequirmentService.postQuatation(quotation);
+
+            return new ResponseEntity<String>("Quatation Posted Sucessfully", HttpStatus.OK);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
+
+    @GetMapping("/postQuatation/{subscribeId}")
+    public ResponseEntity<String> postQuatation(@PathVariable("subscribeId")int id) {
+
+        try {
+
+            subscribeService.UpdateSubscribeQuotation(id);
 
             return new ResponseEntity<String>("Quatation Posted Sucessfully", HttpStatus.OK);
 
