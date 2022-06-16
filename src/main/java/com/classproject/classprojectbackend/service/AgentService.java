@@ -47,4 +47,13 @@ public class AgentService {
 
         return  agentRepository.getServiceAgentByUser(Id);
     }
+
+    public Agent getAgentByPromo(String promoCode){
+        return agentRepository.getServiceAgentByPromo(promoCode);
+    }
+
+    public void updatePromoCount(String promoCode) {
+
+        agentRepository.UpdatepromoCount(promoCode);
+    }
 }

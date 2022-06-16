@@ -42,4 +42,9 @@ public class ServiceConsumerService {
 
         return  serviceConsumerRepo.getServiceConsumerByUser(Id);
     }
+
+    public ServiceConsumer getServiceConsumer(int Id) {
+
+        return  serviceConsumerRepo.getServiceConsumerById(Id);
+    }
 }

@@ -89,6 +89,32 @@ public class ServicePromoControler {
         }
 
     }
+
+    @GetMapping("/sendPromo/{email},{promo}")
+    public String sendPromo(@PathVariable("email") String email,@PathVariable("promo")String promo) {
+
+        try {
+            String email1= serviceProviderWithPromoService.getEmail(email);
+
+            if(email1.equals("valid email")){
+                SimpleMailMessage message = new SimpleMailMessage();
+                message.setFrom("springtest981420@gmail.com");
+                message.setTo(email);
+                message.setSubject("Promo Code");
+                message.setText(promo);
+                emailSender.send(message);
+                return "send successfully";
+            }else{
+                return "not valid email";
+            }
+
+
+
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
+
+    }
 }
 
 

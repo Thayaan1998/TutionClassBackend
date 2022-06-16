@@ -153,17 +153,27 @@ public class UserControler {
     ) {
 
         try {
-            Random rnd = new Random();
-            int number = rnd.nextInt(9999);
-            agentService.updatAgentByResult(result, String.format("%04d", number), agentId);
+            boolean a=true;
+            int number =0;
+            while (a){
+                Random rnd = new Random();
+                number = rnd.nextInt(9999);
 
+                Agent agent=agentService.getAgentByPromo(String.format("%04d", number));
+                if(agent==null){
+                    a=false;
+                }
+
+            }
+
+            agentService.updatAgentByResult(result, String.format("%04d", number), agentId);
 
             if (result.equals("Accepted")) {
                 Users users = userService.getUserById(userId);
                 SimpleMailMessage message = new SimpleMailMessage();
                 message.setFrom("springtest981420@gmail.com");
                 message.setTo(users.getEmail());
-                message.setSubject("Promo Number by admin");
+                message.setSubject("Promo code by admin");
                 message.setText("Admin accepted your request and Your  Promocode is=" + String.format("%04d", number));
                 emailSender.send(message);
             } else {
@@ -419,6 +429,8 @@ public class UserControler {
 
     }
 
+
+
     @GetMapping("/getServiceProviderById/{serviceProviderId}")
     public ServiceProvider  getServiceProviderById(@PathVariable("serviceProviderId")int id) {
         ServiceProvider serviceProvider = null;
@@ -517,4 +529,19 @@ public class UserControler {
 
         return new ResponseEntity<String>("Thayaan", HttpStatus.OK);
     }
+
+    @GetMapping("/updatePromoCount/{promoCode}")
+    public String  getServiceConsumerByUser(@PathVariable("promoCode")String promoCode) {
+
+        try {
+            agentService.updatePromoCount(promoCode);
+            return "promo code updated successfully";
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+    }
+
+
 }

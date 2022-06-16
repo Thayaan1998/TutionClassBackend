@@ -1,5 +1,6 @@
 package com.classproject.classprojectbackend.controler;
 
+import com.classproject.classprojectbackend.entity.InqueringAbout;
 import com.classproject.classprojectbackend.entity.PostRequirement;
 import com.classproject.classprojectbackend.entity.Question;
 import com.classproject.classprojectbackend.service.PostRequirmentService;
@@ -17,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -50,6 +52,30 @@ public class QuestionControler {
 
         } catch (Exception ex) {
             return new ResponseEntity<String>("Question Details Not Added", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/getQuestions")
+    public ResponseEntity<ArrayList<Question>> getQuestions() {
+        ArrayList<Question> question1;
+        try {
+            question1 = questionService.getQuestions();
+            return new ResponseEntity<ArrayList<Question>>(question1, HttpStatus.OK);
+
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    @GetMapping("/getInqueringAbout")
+    public ResponseEntity<ArrayList<InqueringAbout>> getInqueringAbout() {
+        ArrayList<InqueringAbout> question1;
+        try {
+            question1 = questionService.getInquringAbout();
+            return new ResponseEntity<ArrayList<InqueringAbout>>(question1, HttpStatus.OK);
+
+        } catch (Exception ex) {
+            return null;
         }
     }
 

@@ -15,24 +15,29 @@ public class Question {
     private String subject;
     @Column(name="description")
     private String description;
-    @Column(name="inqueringabout")
-    private String inqueringAbout;
+
+    @OneToOne
+    @JoinColumn(name="inqueringaboutid", nullable=false)
+    private InqueringAbout inqueringAbout;
+
     @Column(name="attachments")
     private String attachments;
-    @Column(name="serviceconsumerid ")
-    private String serviceConsumerId;
+
+    @OneToOne
+    @JoinColumn(name="serviceconsumerid", nullable=false)
+    private ServiceConsumer serviceConsumer;
 
     public Question() {
     }
 
-    public Question(int questionId, String email, String subject, String description, String inqueringAbout, String attachments, String serviceConsumerId) {
+    public Question(int questionId, String email, String subject, String description, InqueringAbout inqueringAbout, String attachments, ServiceConsumer serviceConsumer) {
         this.questionId = questionId;
         this.email = email;
         this.subject = subject;
         this.description = description;
         this.inqueringAbout = inqueringAbout;
         this.attachments = attachments;
-        this.serviceConsumerId = serviceConsumerId;
+        this.serviceConsumer = serviceConsumer;
     }
 
     public int getQuestionId() {
@@ -67,11 +72,11 @@ public class Question {
         this.description = description;
     }
 
-    public String getInqueringAbout() {
+    public InqueringAbout getInqueringAbout() {
         return inqueringAbout;
     }
 
-    public void setInqueringAbout(String inqueringAbout) {
+    public void setInqueringAbout(InqueringAbout inqueringAbout) {
         this.inqueringAbout = inqueringAbout;
     }
 
@@ -83,24 +88,11 @@ public class Question {
         this.attachments = attachments;
     }
 
-    public String getServiceConsumerId() {
-        return serviceConsumerId;
+    public ServiceConsumer getServiceConsumer() {
+        return serviceConsumer;
     }
 
-    public void setServiceConsumerId(String serviceConsumerId) {
-        this.serviceConsumerId = serviceConsumerId;
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "questionId=" + questionId +
-                ", email='" + email + '\'' +
-                ", subject='" + subject + '\'' +
-                ", description='" + description + '\'' +
-                ", inqueringAbout='" + inqueringAbout + '\'' +
-                ", attachments='" + attachments + '\'' +
-                ", serviceConsumerId='" + serviceConsumerId + '\'' +
-                '}';
+    public void setServiceConsumer(ServiceConsumer serviceConsumer) {
+        this.serviceConsumer = serviceConsumer;
     }
 }

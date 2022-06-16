@@ -32,4 +32,14 @@ public interface AgentRepository extends CrudRepository<Agent,Integer> {
 
     @Query(value = "SELECT * FROM Agent where userId = ?1 ", nativeQuery = true)
     public Agent getServiceAgentByUser(int userId);
+
+    @Query(value = "SELECT * FROM Agent where promocode = ?1 ", nativeQuery = true)
+    public Agent getServiceAgentByPromo(String promoCode);
+
+    @Modifying
+    @Query("update Agent s set s.promocount =s.promocount+1 where s.promoCode = ?1")
+    public void UpdatepromoCount(String promoCode);
+
+
+
 }
