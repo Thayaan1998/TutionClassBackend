@@ -1,13 +1,7 @@
 package com.classproject.classprojectbackend.controler;
 
-import com.classproject.classprojectbackend.entity.ServiceProvider;
-import com.classproject.classprojectbackend.entity.ServiceProviderWithPromo;
-import com.classproject.classprojectbackend.entity.UserType;
-import com.classproject.classprojectbackend.entity.Users;
-import com.classproject.classprojectbackend.service.ServiceProviderService;
-import com.classproject.classprojectbackend.service.ServiceProviderWithPromoService;
-import com.classproject.classprojectbackend.service.UserService;
-import com.classproject.classprojectbackend.service.UserTypeService;
+import com.classproject.classprojectbackend.entity.*;
+import com.classproject.classprojectbackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +23,10 @@ public class ServicePromoControler {
 
     @Autowired(required = true)
     private UserService userService;
+
+    @Autowired(required = true)
+    private AgentService agentService;
+
     @Autowired
     private JavaMailSender emailSender;
 
@@ -96,16 +94,22 @@ public class ServicePromoControler {
         try {
             String email1= serviceProviderWithPromoService.getEmail(email);
 
-            if(email1.equals("valid email")){
+            if(email1.equals("no valid email")){
+                Agent agent=agentService.getAgentByPromo(promo);
                 SimpleMailMessage message = new SimpleMailMessage();
                 message.setFrom("springtest981420@gmail.com");
                 message.setTo(email);
-                message.setSubject("Promo Code");
-                message.setText(promo);
+                message.setSubject("Promo Code fpr Service Hub");
+                message.setText(promo+" "+"From This promo code you will get"
+                        +"\n\n"+"Gold Package Discount:"+agent.getGoldDiscount()+"rs"
+                        +"\n\n"+"Silver Package Discount:"+agent.getSilverDiscount()+"rs"
+                        +"\n\n"+"Platinum Package Discount:"+agent.getPlatinumDiscount()+"rs"
+
+                );
                 emailSender.send(message);
                 return "send successfully";
             }else{
-                return "not valid email";
+                return "this email already there";
             }
 
 

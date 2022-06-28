@@ -55,5 +55,14 @@ public class AgentService {
     public void updatePromoCount(String promoCode) {
 
         agentRepository.UpdatepromoCount(promoCode);
+
+        int promoCount=agentRepository.getPromoCount(promoCode);
+
+        if(promoCount==20){
+            agentRepository.UpdateDiscount("700","300","1000",promoCode);
+        }else if(promoCount==50){
+            agentRepository.UpdateDiscount("1000","400","1500",promoCode);
+
+        }
     }
 }

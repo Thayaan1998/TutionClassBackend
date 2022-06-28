@@ -11,10 +11,6 @@ public class Comments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="commentsid ")
     private int commentsId;
-    @Column(name="name")
-    private String name;
-    @Column(name="email")
-    private String email;
     @Column(name="review")
     private String review;
     @Column(name="rating")
@@ -23,19 +19,25 @@ public class Comments {
     private int  likes;
     @Column(name="dislikes")
     private int  dislikes;
-
     @Column(name="replies")
     private int  replies;
+    @Column(name="serviceconsumerid")
+    private int serviceConsumerId;
+    @Column(name="serviceproviderid")
+    private int serviceProviderId;
+    @Column(name="name")
+    private String name;
 
-    public Comments(int commentsId, String name, String email, String review, String rating, int likes, int dislikes, int replies) {
+    public Comments(int commentsId, String review, String rating, int likes, int dislikes, int replies, int serviceConsumerId, int serviceProviderId, String name) {
         this.commentsId = commentsId;
-        this.name = name;
-        this.email = email;
         this.review = review;
         this.rating = rating;
         this.likes = likes;
         this.dislikes = dislikes;
         this.replies = replies;
+        this.serviceConsumerId = serviceConsumerId;
+        this.serviceProviderId = serviceProviderId;
+        this.name = name;
     }
 
     public Comments() {
@@ -47,22 +49,6 @@ public class Comments {
 
     public void setCommentsId(int commentsId) {
         this.commentsId = commentsId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getReview() {
@@ -103,5 +89,29 @@ public class Comments {
 
     public void setReplies(int replies) {
         this.replies = replies;
+    }
+
+    public int getServiceConsumerId() {
+        return serviceConsumerId;
+    }
+
+    public void setServiceConsumerId(int serviceConsumerId) {
+        this.serviceConsumerId = serviceConsumerId;
+    }
+
+    public int getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(int serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

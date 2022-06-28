@@ -3,6 +3,7 @@ package com.classproject.classprojectbackend.controler;
 import com.classproject.classprojectbackend.entity.InqueringAbout;
 import com.classproject.classprojectbackend.entity.PostRequirement;
 import com.classproject.classprojectbackend.entity.Question;
+import com.classproject.classprojectbackend.entity.Question2;
 import com.classproject.classprojectbackend.service.PostRequirmentService;
 import com.classproject.classprojectbackend.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +56,36 @@ public class QuestionControler {
         }
     }
 
-    @GetMapping("/getQuestions")
-    public ResponseEntity<ArrayList<Question>> getQuestions() {
+    @PostMapping("/addQuestion2")
+    public ResponseEntity<String> addCustomer(@RequestBody Question2 question) {
+        Question2 question1;
+        try {
+            question1 = questionService.saveQuestion2(question);
+            return new ResponseEntity<String>("Question Details Added Successfully", HttpStatus.OK);
+
+        } catch (Exception ex) {
+            return new ResponseEntity<String>("Question Details Not Added", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/getQuestions/{serviceProviderId}")
+    public ResponseEntity<ArrayList<Question>> getQuestions(@PathVariable("serviceProviderId") int serviceProviderId) {
         ArrayList<Question> question1;
         try {
-            question1 = questionService.getQuestions();
+            question1 = questionService.getQuestions(serviceProviderId);
             return new ResponseEntity<ArrayList<Question>>(question1, HttpStatus.OK);
+
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    @GetMapping("/getQuestions2")
+    public ResponseEntity<ArrayList<Question2>> getQuestions2() {
+        ArrayList<Question2> question1;
+        try {
+            question1 = questionService.getQuestions2();
+            return new ResponseEntity<ArrayList<Question2>>(question1, HttpStatus.OK);
 
         } catch (Exception ex) {
             return null;

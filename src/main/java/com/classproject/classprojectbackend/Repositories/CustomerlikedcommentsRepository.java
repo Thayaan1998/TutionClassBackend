@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public interface CustomerlikedcommentsRepository extends CrudRepository<Customerlikedcomments, Integer> {
 
-    @Query(value = "SELECT * from customerlikedcomments where customerId =?1", nativeQuery = true)
-    public ArrayList<Customerlikedcomments> getLikedCommentsBy(int customerId);
+    @Query(value = "SELECT * from customerlikedcomments where serviceConsumerId =?1", nativeQuery = true)
+    public ArrayList<Customerlikedcomments> getLikedCommentsBy(int serviceConsumerId);
 
 
 }

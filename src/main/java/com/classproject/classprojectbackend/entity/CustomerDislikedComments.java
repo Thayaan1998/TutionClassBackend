@@ -17,13 +17,17 @@ public class CustomerDislikedComments {
     @Column(name="commentid")
     private int commentId;
 
+    @Column(name="serviceconsumerid")
+    private int serviceConsumerId;
+
     public CustomerDislikedComments() {
     }
 
-    public CustomerDislikedComments(int dislikedId, int customerId, int commentId) {
+    public CustomerDislikedComments(int dislikedId, int customerId, int commentId, int serviceConsumerId) {
         this.dislikedId = dislikedId;
         this.customerId = customerId;
         this.commentId = commentId;
+        this.serviceConsumerId = serviceConsumerId;
     }
 
     public int getDislikedId() {
@@ -48,5 +52,13 @@ public class CustomerDislikedComments {
 
     public void setCommentId(int commentId) {
         this.commentId = commentId;
+    }
+
+    public int getServiceConsumerId() {
+        return serviceConsumerId;
+    }
+
+    public void setServiceConsumerId(int serviceConsumerId) {
+        this.serviceConsumerId = serviceConsumerId;
     }
 }

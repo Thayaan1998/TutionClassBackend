@@ -22,7 +22,7 @@ public interface UserRepository extends CrudRepository<Users,Integer> {
     @Query(value = "SELECT * FROM users where userId = ?1 ", nativeQuery = true)
     public Users getUserById(int Id);
 
-    @Query(value = "SELECT * FROM users where email = ?1 and userTypeId=1", nativeQuery = true)
+    @Query(value = "SELECT * FROM users where email = ?1", nativeQuery = true)
     public Users getUserByEmail2(String email);
 
     @Modifying

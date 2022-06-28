@@ -18,9 +18,9 @@ public class ServiceProviderService {
        return  (ArrayList< ServiceProvider> )serviceProviderRepo.findAll();
     }
 
-    public ArrayList<ServiceProvider>  getServiceProviderByResult() {
+    public ArrayList<ServiceProvider>  getServiceProviderByResult(String result) {
 
-        return  (ArrayList< ServiceProvider> )serviceProviderRepo.getServiceProviderByResult("Not Accepted");
+        return  (ArrayList< ServiceProvider> )serviceProviderRepo.getServiceProviderByResult(result);
     }
 
     public ArrayList<ServiceProvider>  getServiceProviderByLocation(int location) {

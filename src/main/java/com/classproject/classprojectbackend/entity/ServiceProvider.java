@@ -38,6 +38,15 @@ public class ServiceProvider {
     @JoinColumn(name="userid", nullable=false)
     private Users users;
 
+    @Column(name="golddiscount")
+    private String goldDiscount;
+
+    @Column(name="silverdiscount")
+    private String silverDiscount;
+
+    @Column(name="platinumdiscount")
+    private String platinumDiscount;
+
 
     public Users getUsers() {
         return users;
@@ -50,7 +59,7 @@ public class ServiceProvider {
     public ServiceProvider() {
     }
 
-    public ServiceProvider(int serviceProviderId, String companyName, String licenceNumber, String description, int rating, String category, int location, String result, Users users) {
+    public ServiceProvider(int serviceProviderId, String companyName, String licenceNumber, String description, int rating, String category, int location, String result, Users users, String goldDiscount, String silverDiscount, String platinumDiscount) {
         this.serviceProviderId = serviceProviderId;
         this.companyName = companyName;
         this.licenceNumber = licenceNumber;
@@ -60,6 +69,41 @@ public class ServiceProvider {
         this.location = location;
         this.result = result;
         this.users = users;
+        this.goldDiscount = goldDiscount;
+        this.silverDiscount = silverDiscount;
+        this.platinumDiscount = platinumDiscount;
+    }
+
+    public int getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(int serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getLicenceNumber() {
+        return licenceNumber;
+    }
+
+    public void setLicenceNumber(String licenceNumber) {
+        this.licenceNumber = licenceNumber;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getRating() {
@@ -86,33 +130,6 @@ public class ServiceProvider {
         this.location = location;
     }
 
-    public int getServiceProviderId() {
-        return serviceProviderId;
-    }
-
-    public void setServiceProviderId(int serviceProviderId) {
-        this.serviceProviderId = serviceProviderId;
-    }
-
-
-    public String getLicenceNumber() {
-        return licenceNumber;
-    }
-
-    public void setLicenceNumber(String licenceNumber) {
-        this.licenceNumber = licenceNumber;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-
     public String getResult() {
         return result;
     }
@@ -121,13 +138,27 @@ public class ServiceProvider {
         this.result = result;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getGoldDiscount() {
+        return goldDiscount;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setGoldDiscount(String goldDiscount) {
+        this.goldDiscount = goldDiscount;
     }
 
+    public String getSilverDiscount() {
+        return silverDiscount;
+    }
 
+    public void setSilverDiscount(String silverDiscount) {
+        this.silverDiscount = silverDiscount;
+    }
+
+    public String getPlatinumDiscount() {
+        return platinumDiscount;
+    }
+
+    public void setPlatinumDiscount(String platinumDiscount) {
+        this.platinumDiscount = platinumDiscount;
+    }
 }

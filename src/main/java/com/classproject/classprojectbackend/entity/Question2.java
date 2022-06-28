@@ -3,8 +3,8 @@ package com.classproject.classprojectbackend.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="askquestion")
-public class Question {
+@Table(name="askquestion2")
+public class Question2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="questionid")
@@ -17,30 +17,19 @@ public class Question {
     @JoinColumn(name="inqueringaboutid", nullable=false)
     private InqueringAbout inqueringAbout;
     @OneToOne
-    @JoinColumn(name="serviceconsumerid", nullable=false)
-    private ServiceConsumer serviceConsumer;
-    @Column(name="serviceproviderid")
-    private int serviceProviderId;
+    @JoinColumn(name="serviceproviderid", nullable=false)
+    private ServiceProvider serviceProvider;
 
 
-    public Question() {
+    public Question2() {
     }
 
-    public Question(int questionId, String subject, String description, InqueringAbout inqueringAbout, ServiceConsumer serviceConsumer, int serviceProviderId) {
+    public Question2(int questionId, String subject, String description, InqueringAbout inqueringAbout, ServiceProvider serviceProvider) {
         this.questionId = questionId;
         this.subject = subject;
         this.description = description;
         this.inqueringAbout = inqueringAbout;
-        this.serviceConsumer = serviceConsumer;
-        this.serviceProviderId = serviceProviderId;
-    }
-
-    public int getServiceProviderId() {
-        return serviceProviderId;
-    }
-
-    public void setServiceProviderId(int serviceProviderId) {
-        this.serviceProviderId = serviceProviderId;
+        this.serviceProvider = serviceProvider;
     }
 
     public int getQuestionId() {
@@ -50,8 +39,6 @@ public class Question {
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
-
-
 
     public String getSubject() {
         return subject;
@@ -77,11 +64,11 @@ public class Question {
         this.inqueringAbout = inqueringAbout;
     }
 
-    public ServiceConsumer getServiceConsumer() {
-        return serviceConsumer;
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
     }
 
-    public void setServiceConsumer(ServiceConsumer serviceConsumer) {
-        this.serviceConsumer = serviceConsumer;
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
     }
 }

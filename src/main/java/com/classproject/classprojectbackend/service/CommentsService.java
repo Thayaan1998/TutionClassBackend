@@ -27,22 +27,22 @@ public class CommentsService {
         return  commentsRepository.save(comments);
     }
 
-    public ArrayList<Comments> getComments() {
-        return (ArrayList<Comments>) commentsRepository.findAll();
+    public ArrayList<Comments> getComments(int id) {
+        return (ArrayList<Comments>) commentsRepository.getComments(id);
 
     }
 
 
-    public ArrayList<Customerlikedcomments> getLikedComments(int customerId) {
-        return (ArrayList< Customerlikedcomments>) customerlikedcommentsRepository.getLikedCommentsBy(customerId);
+    public ArrayList<Customerlikedcomments> getLikedComments(int serviceConsumerId) {
+        return (ArrayList< Customerlikedcomments>) customerlikedcommentsRepository.getLikedCommentsBy(serviceConsumerId);
     }
 
-    public  void updateLikedComment(int likes,int commentId,int customerId,String reason,int likeId ){
+    public  void updateLikedComment(int likes,int commentId,int customerId,String reason,int likeId,int serviceConsumerId ){
 
         commentsRepository.UpdateLikedComments(likes,commentId);
 
         if(reason.equals("save")){
-            Customerlikedcomments customerlikedcomments=new Customerlikedcomments(likeId,customerId,commentId);
+            Customerlikedcomments customerlikedcomments=new Customerlikedcomments(likeId,customerId,commentId,serviceConsumerId);
             customerlikedcommentsRepository.save(customerlikedcomments);
         }else{
             customerlikedcommentsRepository.deleteById(likeId);
@@ -51,16 +51,16 @@ public class CommentsService {
 
     }
 
-    public ArrayList< CustomerDislikedComments> getDisLikedComments(int customerId) {
-        return (ArrayList< CustomerDislikedComments>) customerDislikedCommentsRepository.getDisLikedCommentsBy(customerId);
+    public ArrayList< CustomerDislikedComments> getDisLikedComments(int serviceConsumerId) {
+        return (ArrayList< CustomerDislikedComments>) customerDislikedCommentsRepository.getDisLikedCommentsBy(serviceConsumerId);
     }
 
-    public  void updateDisLikedComment(int dislikes,int commentId,int customerId,String reason,int dislikeid ){
+    public  void updateDisLikedComment(int dislikes,int commentId,int customerId,String reason,int dislikeid,int serviceConsumerId ){
 
         commentsRepository.UpdateDisLikedComments(dislikes,commentId);
 
         if(reason.equals("save")){
-            CustomerDislikedComments customerDislikedcomments=new CustomerDislikedComments(dislikeid,customerId,commentId);
+            CustomerDislikedComments customerDislikedcomments=new CustomerDislikedComments(dislikeid,customerId,commentId,serviceConsumerId);
             customerDislikedCommentsRepository.save(customerDislikedcomments);
         }else{
             customerDislikedCommentsRepository.deleteById(dislikeid);

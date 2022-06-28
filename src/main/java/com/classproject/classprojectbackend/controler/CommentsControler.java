@@ -34,13 +34,16 @@ public class CommentsControler {
 
     }
 
-    @GetMapping("/allComments")
-    public ResponseEntity<ArrayList<Comments>> getAllComments() {
+    @GetMapping("/allComments/{id}")
+    public ResponseEntity<ArrayList<Comments>> getAllComments(@PathVariable("id") int id) {
 
         ArrayList<Comments> comments = null;
         try {
-            comments = commentsService.getComments();
+            comments = commentsService.getComments(id);
+            System.out.println(comments);
         } catch (Exception ex) {
+            System.out.println(ex);
+
             ex.getMessage();
         }
         return new ResponseEntity<ArrayList<Comments>>(comments, HttpStatus.OK);
@@ -59,16 +62,17 @@ public class CommentsControler {
     }
 
 
-    @GetMapping("/updateLikedComment/{likes},{commentId},{customerId},{reason},{likeId}")
+    @GetMapping("/updateLikedComment/{likes},{commentId},{customerId},{reason},{likeId},{serviceConsumerId}")
     public ResponseEntity<String> updateLikedComment(@PathVariable("likes") int likes,
                                                      @PathVariable("commentId") int commentId,
                                                      @PathVariable("customerId") int customerId,
                                                      @PathVariable("reason") String reason,
-                                                     @PathVariable("likeId") int likeId) {
+                                                     @PathVariable("likeId") int likeId,
+                                                     @PathVariable("serviceConsumerId")int serviceConsumerId) {
 
 
         try {
-            commentsService.updateLikedComment(likes,commentId,customerId,reason,likeId);
+            commentsService.updateLikedComment(likes,commentId,customerId,reason,likeId,serviceConsumerId);
         } catch (Exception ex) {
             ex.getMessage();
         }
@@ -86,16 +90,17 @@ public class CommentsControler {
         return new ResponseEntity<ArrayList<CustomerDislikedComments>>(comments, HttpStatus.OK);
     }
 
-    @GetMapping("/updateDisLikedComment/{dislikes},{commentId},{customerId},{reason},{dislikeid}")
+    @GetMapping("/updateDisLikedComment/{dislikes},{commentId},{customerId},{reason},{dislikeid},{serviceConsumerId}")
     public ResponseEntity<String> updateDisLikedComment(@PathVariable("dislikes") int dislikes,
                                                         @PathVariable("commentId") int commentId,
                                                         @PathVariable("customerId") int customerId,
                                                         @PathVariable("reason") String reason,
-                                                        @PathVariable("dislikeid") int dislikeid) {
+                                                        @PathVariable("dislikeid") int dislikeid,
+                                                        @PathVariable("serviceConsumerId")int serviceConsumerId) {
 
 
         try {
-            commentsService.updateDisLikedComment(dislikes,commentId,customerId,reason,dislikeid);
+            commentsService.updateDisLikedComment(dislikes,commentId,customerId,reason,dislikeid,serviceConsumerId);
         } catch (Exception ex) {
             ex.getMessage();
         }

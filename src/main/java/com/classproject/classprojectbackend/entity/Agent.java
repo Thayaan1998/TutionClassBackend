@@ -34,10 +34,19 @@ public class Agent {
     @Column(name="promocount")
     private int promocount;
 
+    @Column(name="golddiscount")
+    private String goldDiscount;
+
+    @Column(name="silverdiscount")
+    private String silverDiscount;
+
+    @Column(name="platinumdiscount")
+    private String platinumDiscount;
+
     public Agent() {
     }
 
-    public Agent(int agentId, String nicNumber, String dob, String type, String promoCode, Users users, String result, int promocount) {
+    public Agent(int agentId, String nicNumber, String dob, String type, String promoCode, Users users, String result, int promocount, String goldDiscount, String silverDiscount, String platinumDiscount) {
         this.agentId = agentId;
         this.nicNumber = nicNumber;
         this.dob = dob;
@@ -46,14 +55,9 @@ public class Agent {
         this.users = users;
         this.result = result;
         this.promocount = promocount;
-    }
-
-    public int getPromocount() {
-        return promocount;
-    }
-
-    public void setPromocount(int promocount) {
-        this.promocount = promocount;
+        this.goldDiscount = goldDiscount;
+        this.silverDiscount = silverDiscount;
+        this.platinumDiscount = platinumDiscount;
     }
 
     public int getAgentId() {
@@ -110,5 +114,37 @@ public class Agent {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public int getPromocount() {
+        return promocount;
+    }
+
+    public void setPromocount(int promocount) {
+        this.promocount = promocount;
+    }
+
+    public String getGoldDiscount() {
+        return goldDiscount;
+    }
+
+    public void setGoldDiscount(String goldDiscount) {
+        this.goldDiscount = goldDiscount;
+    }
+
+    public String getSilverDiscount() {
+        return silverDiscount;
+    }
+
+    public void setSilverDiscount(String silverDiscount) {
+        this.silverDiscount = silverDiscount;
+    }
+
+    public String getPlatinumDiscount() {
+        return platinumDiscount;
+    }
+
+    public void setPlatinumDiscount(String platinumDiscount) {
+        this.platinumDiscount = platinumDiscount;
     }
 }

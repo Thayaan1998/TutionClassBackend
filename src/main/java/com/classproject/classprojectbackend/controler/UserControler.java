@@ -78,6 +78,9 @@ public class UserControler {
         Agent agent1;
         try {
 
+            agent.setGoldDiscount("300");
+            agent.setSilverDiscount("200");
+            agent.setPlatinumDiscount("400");
             agentService.saveAgent(agent);
             return new ResponseEntity<String>("Your details added sucessfully now admin want to accept you", HttpStatus.OK);
 
@@ -222,7 +225,7 @@ public class UserControler {
     public ResponseEntity<ArrayList<ServiceProvider>> getServiceProviders() {
         ArrayList<ServiceProvider> serviceProviders = null;
         try {
-            serviceProviders = serviceProviderService.getServiceProviderByResult();
+            serviceProviders = serviceProviderService.getServiceProviderByResult("Not Accepted");
 
             return new ResponseEntity<ArrayList<ServiceProvider>>(serviceProviders, HttpStatus.OK);
 
@@ -538,6 +541,35 @@ public class UserControler {
             return "promo code updated successfully";
         } catch (Exception ex) {
             System.out.println(ex);
+            return null;
+        }
+
+    }
+
+    @GetMapping("/getAgent/{promoCode}")
+    public Agent  getAgentByPromo(@PathVariable("promoCode")String promoCode) {
+
+        try {
+            Agent agent=agentService.getAgentByPromo(promoCode);
+            return agent;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+    }
+
+
+
+    @GetMapping("/getServiceProviders2")
+    public ResponseEntity<ArrayList<ServiceProvider>> getServiceProviders2() {
+        ArrayList<ServiceProvider> serviceProviders = null;
+        try {
+            serviceProviders = serviceProviderService.getServiceProviderByResult("Accepted");
+
+            return new ResponseEntity<ArrayList<ServiceProvider>>(serviceProviders, HttpStatus.OK);
+
+        } catch (Exception ex) {
             return null;
         }
 
