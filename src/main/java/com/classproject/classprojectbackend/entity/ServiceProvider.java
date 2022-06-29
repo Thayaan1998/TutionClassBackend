@@ -47,6 +47,16 @@ public class ServiceProvider {
     @Column(name="platinumdiscount")
     private String platinumDiscount;
 
+    @Column(name="promocode")
+    private String promoCode;
+
+    public String getPromoCode() {
+        return promoCode;
+    }
+
+    public void setPromoCode(String promoCode) {
+        this.promoCode = promoCode;
+    }
 
     public Users getUsers() {
         return users;

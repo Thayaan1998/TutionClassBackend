@@ -43,10 +43,13 @@ public class Agent {
     @Column(name="platinumdiscount")
     private String platinumDiscount;
 
+    @Column(name="totalamount")
+    private int totalamount;
+
     public Agent() {
     }
 
-    public Agent(int agentId, String nicNumber, String dob, String type, String promoCode, Users users, String result, int promocount, String goldDiscount, String silverDiscount, String platinumDiscount) {
+    public Agent(int agentId, String nicNumber, String dob, String type, String promoCode, Users users, String result, int promocount, String goldDiscount, String silverDiscount, String platinumDiscount, int totalamount) {
         this.agentId = agentId;
         this.nicNumber = nicNumber;
         this.dob = dob;
@@ -58,6 +61,16 @@ public class Agent {
         this.goldDiscount = goldDiscount;
         this.silverDiscount = silverDiscount;
         this.platinumDiscount = platinumDiscount;
+        this.totalamount = totalamount;
+    }
+
+
+    public int getTotalamount() {
+        return totalamount;
+    }
+
+    public void setTotalamount(int totalamount) {
+        this.totalamount = totalamount;
     }
 
     public int getAgentId() {

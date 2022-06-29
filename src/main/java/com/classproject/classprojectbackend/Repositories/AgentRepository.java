@@ -45,6 +45,15 @@ public interface AgentRepository extends CrudRepository<Agent,Integer> {
     public void UpdateDiscount(String goldDiscount,String silverDiscount,String platinumDiscount,String promoCode);
 
 
+    @Modifying
+    @Query("update Agent s set s.totalamount =s.totalamount+100 where s.promoCode = ?1")
+    public void UpdateAmount(String promoCode);
+
+    @Modifying
+    @Query("update Agent s set s.totalamount =0 where s.agentId = ?1")
+    public void UpdateAmount2(int agentId);
+
+
     @Query(value = "SELECT promocount FROM Agent where promocode = ?1 ", nativeQuery = true)
     public int getPromoCount(String promoCode);
 

@@ -134,11 +134,11 @@ public class UserControler {
 
     }
 
-    @GetMapping("/getAgents")
-    public ResponseEntity<ArrayList<Agent>> getAgents() {
+    @GetMapping("/getAgents/{result}")
+    public ResponseEntity<ArrayList<Agent>> getAgents(@PathVariable("result")String result) {
         ArrayList<Agent> agents = null;
         try {
-            agents = agentService.getAgentByResult();
+            agents = agentService.getAgentByResult(result);
 
             return new ResponseEntity<ArrayList<Agent>>(agents, HttpStatus.OK);
 
@@ -574,6 +574,50 @@ public class UserControler {
         }
 
     }
+
+    @GetMapping("/updateAmount/{promoCode}")
+    public String  updateAmount(@PathVariable("promoCode")String promoCode) {
+
+        try {
+             agentService.updateAmount(promoCode);
+            return "amount Updated Successfuly";
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return ex.toString();
+        }
+
+    }
+
+    @PostMapping("/savePayment")
+    public ResponseEntity<String> savePayment(@RequestBody Payment payment) {
+        try {
+           agentService.savePayment(payment);
+
+
+            return new ResponseEntity<String>("Payment Details Saved successfully", HttpStatus.OK);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @GetMapping("/getPayment/{agentId}")
+    public ResponseEntity<ArrayList<Payment>> getPayment(@PathVariable("agentId")int agentId) {
+        ArrayList<Payment> serviceProviders = null;
+        try {
+            serviceProviders = agentService.getPayment(agentId);
+
+            return new ResponseEntity<ArrayList<Payment>>(serviceProviders, HttpStatus.OK);
+
+        } catch (Exception ex) {
+            return null;
+        }
+
+    }
+
 
 
 }
